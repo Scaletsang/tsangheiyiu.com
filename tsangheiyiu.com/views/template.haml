@@ -1,0 +1,23 @@
+%html
+
+  %head
+    %title Blog
+    %meta{ charset: "UTF-8", name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    %link{ rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" }
+    %link{ rel: "stylesheet", href: "public/css/style.css" }
+    %script{ src: "public/js/jquery-3.5.1.min.js" }
+    %script{ src: "public/js/blogpage.js" }
+
+
+  %body
+
+    %div.page-container
+      %div.sidebar
+        %div.nav
+          %a{ href: "/home"} Home
+          %a{ href: "/projects"} Projects
+          %a{ href: "/writings"} Writings
+          %a{ href: "/blogs"} Blogs
+          %a{ href: "/contact"} Contact
+        %div.content-container
+          = content
