@@ -10,13 +10,13 @@ What do I need? What medium works for me?
 
 I think I have already done the map when I was making the Pecha Kucha slideshow about what have I done in the past few months.
 
-[presentation](./media/pechakucha_presentation/slide1.jpeg)
+[presentation](/media/pechakucha_presentation)
 
 [abstract] All the slides are from one picture that I have drawn. I regard that as a visual mapping of how I see myself as a curator, a composer, got lost in playing around with abstract structures, and returning to a humancentric curation that needs sensitive, that works with people.
 
-![img](./media/pechakucha_presentation/fullpicture.jpg)
+![img](/media/pechakucha_presentation/fullpicture.jpg)
 
-![img](./media/pechakucha_presentation/note1.jpg)
+![img](/media/pechakucha_presentation/note1.jpg)
 
 ## Translation
 
@@ -24,7 +24,7 @@ My idea of thinking curation as an art that put artworks into shapes that fit to
 
 The greatest literature will have a high translatibility so that even meaning or language is mutated, the spirit, the content of thoughts remain. And in these case, the task of a translator is more like an artist, who do not translate the origin word by word but translate it holistically so that he can fit the literature into a into a language that fits the current era, allow people to see the light of the spirit of the literature shinning through the mutated language.
 
-![img](./media/pechakucha_presentation/note2.jpg)
+![img](/media/pechakucha_presentation/note2.jpg)
 
 ## Curation
 

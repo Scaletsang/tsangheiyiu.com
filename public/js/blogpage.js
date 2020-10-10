@@ -1,9 +1,12 @@
 window.onload = function() {
   setupEventListeners();
+  triggerBlogContainerShrink();
+  makeMasonryLayout();
 }
 
 function makeMasonryLayout() {
-
+  let blogposts = $("#unorganized-blogposts").html()
+  console.log(blogposts);
 }
 
 function triggerBlogContainerShrink() {
@@ -33,7 +36,6 @@ function triggerBlogContainerShrink() {
 //event listeners
 
 function setupEventListeners() {
-
   //view posts
   $(".blog-cover-img, .blog-title").click(function() {
     $("#single-blog-container").show();

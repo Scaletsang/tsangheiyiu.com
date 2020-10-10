@@ -1,25 +1,27 @@
 %div#page-name
   %h1 Blogs
-  %p#page-description
-    This is a blog that records the process of my last year at my Bachelor's project (Oct 2020 - May 2021).
-    This is my library of thoughts and ideas, including the organized, the forgotten, the incompleted and the flawed.
+%p#page-description
+  This is a blog that records the process of my last year at my Bachelor's project (Oct 2020 - May 2021).
+  This is my library of thoughts and ideas, including the organized, the forgotten, the incompleted and the flawed.
 
-  %div#blog-container
 
-    %div#multiple-blog-container
-      %div#unorganized-blogposts
-        = blogposts
+%div#blog-container
 
-        %div.blog-columns#column1
-        %div.blog-columns#column2
-        %div.blog-columns#column3
-        %div.blog-columns#column4
+  %div#multiple-blog-container
+    %div#unorganized-blogposts
+      = blogposts
 
-    %div#single-blog-container
-      %img#close-button { src: "./media/UI/close_button.png"}
-      %img#span-button { src: "./media/UI/span_button.png"}
+    %div.blog-columns#column1
+    %div.blog-columns#column2
+    %div.blog-columns#column3
+    %div.blog-columns#column4
 
-      %div.single-blog-content
+  %div#single-blog-container
+    %img#close-button{:src => "./media/UI/close_button.png"}
+    %img#span-button{:src => "./media/UI/span_button.png"}
 
-    %div#search-box
-      %input { type: "text", name: "search", placeholder: "Search/filter blogs"}
+
+    %div.single-blog-content
+
+  %div#search-box
+    %input{:name => "search", :placeholder => "Search/filter blogs", :type => "text"}
