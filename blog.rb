@@ -46,8 +46,14 @@ end
 
 def custom_md_parser md_content
   #cover-img
+  cover_img =
+    if (/\[cover\-img\]\((.+)\)/).match? md_content
+      md_content.match(/\[cover\-img\]\((.+)\)/)[1]
+    else
+      ""
+    end
+
   if (/\[cover\-img\]\((.+)\)/).match? md_content
-    cover_img = md_content.match(/\[cover\-img\]\((.+)\)/)[1]
     md_content.sub! /\[cover\-img\]\((.+)\)/, ""
   end
 

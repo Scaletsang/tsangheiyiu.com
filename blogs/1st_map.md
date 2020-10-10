@@ -1,6 +1,6 @@
 # First map
 
-[cover-img](/media/pechakucha_presentation/note2.jpeg)
+[cover-img](/media/pechakucha_presentation/note2.jpg)
 [date] 8 Oct 2020 morning
 [tags] ISP, curation, paper-sculpture
 [connections] none
