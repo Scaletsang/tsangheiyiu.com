@@ -1,6 +1,6 @@
 # Second map
 
-[date] 8 Oct 2020 morning
+[date] 10 Jan 2021 morning
 [tags] ISP, paper-sculpture
 [connections] none
 

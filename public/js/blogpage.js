@@ -1,12 +1,53 @@
 window.onload = function() {
-  setupEventListeners();
-  triggerBlogContainerShrink();
+  // setupEventListeners();
+  // triggerBlogContainerShrink();
   makeMasonryLayout();
 }
 
-function makeMasonryLayout() {
-  let blogposts = $("#unorganized-blogposts").html()
-  console.log(blogposts);
+function blog(id) {
+  this.id = "#" + id;
+  this.tags = $(this.id).attr('class').split(/\s+/).slice(1);
+  this.connections = $(this.id + " " + ".blog-connections").text();
+
+  //get blog date as string
+  let date = $(this.id + " " + ".blog-date").text();
+  //set blog day, month and year
+  [_, day, monthInAlphabet, this.year] = /(\d+)\s(\w+)\s(\d+)/.exec(date);
+
+  if (day.toString().length == 1) {
+    this.day = parseInt("0" + day.toString());
+  } else this.day = day
+
+  //convert blog month into numbers so it is easier to sort
+  let monthLs = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  this.month = monthLs.indexOf(monthInAlphabet.toLowerCase()) + 1 ;
+}
+
+function sortBlogByDate() {
+  let blogpostsAttrLs = $(".blogpost")
+    .map(function(index, elem) {
+      let blogpost = new blog(elem.id);
+      console.log(blogpost.month);
+      return {
+        id: blogpost.id,
+        tags: blogpost.tags,
+        date: parseInt(blogpost.year.toString() + blogpost.month.toString() + blogpost.day.toString())
+    }})
+  return blogpostsAttrLs.sort(function(a, b){ return a.date-b.date});
+}
+
+function putBlogInColumns(sortedFilteredBlogList) {
+  //something
+}
+
+function makeMasonryLayout(filter=["none"]) {
+  let sortedByDate = sortBlogByDate();
+  if (filter[0] == "none") {
+    putBlogInColumns(sortedByDate);
+  } else {
+    filtered = //something
+    putBlogInColumns(filtered);
+  }
 }
 
 function triggerBlogContainerShrink() {

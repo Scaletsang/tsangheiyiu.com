@@ -7,15 +7,22 @@ get '/blog' do
   #return a list of markdown blogposts path
   blogposts_paths = Dir.glob("*", base: "blogs").each { |bp| bp.prepend("./blogs/")}
 
-  #render all blogposts as html and return it as a list
+  blog_id_count = 0
+
+  #render all blogposts as html and return it as a string
   blogposts_html = blogposts_paths.reduce("") do |html, bp_path|
+    #gives an unique id for the current post
+    blog_id_count += 1
+    #render the html of the current post
     blog = md_to_html_parser(bp_path)
     blog_html = haml(:post, :locals => {
+      :blog_id => "blog" + blog_id_count.to_s,
       :blog_cover_img => blog[1][0],
       :blog_title => blog[1][1],
       :blog_date => blog[1][2],
       :blog_connections => blog[1][3],
       :blog_abstract => blog[1][4],
+      :blog_tags => blog[1][5],
       :blog_content => blog[0]
       })
     html + blog_html
@@ -37,12 +44,11 @@ def md_to_html_parser blog
   bindings = custom_md_parser content
 
   #parse mardown to html
-  blog_detail_content_html = Kramdown::Document.new(bindings[5]).to_html
+  blog_detail_content_html = Kramdown::Document.new(bindings[6]).to_html
 
   return [blog_detail_content_html, bindings]
 
 end
-
 
 def custom_md_parser md_content
   #cover-img
@@ -65,21 +71,23 @@ def custom_md_parser md_content
   date = md_content.match(/\[date\](.+)/)[1]
   md_content.sub! /\[date\](.+)/, ""
 
-  #abstract
-  abstract = md_content.match(/\[abstract\](.+)/)[1]
-  md_content.sub! /\[abstract\](.+)/, ""
-
   #connections
   connections = md_content.match(/\[connections\](.+)/)[1]
   md_content.sub! /\[connections\](.+)/, ""
 
+  #abstract
+  abstract = md_content.match(/\[abstract\](.+)/)[1]
+  md_content.sub! /\[abstract\](.+)/, ""
+
+  #tags
+  tags_string = md_content.match(/\[tags\](.+)/)[1]
+  tags = tags_to_list tags_string
+  md_content.sub! /\[tags\](.+)/, ""
+
   #presentation
   md_content.sub!(/\[presentation\]\((.+)\)/) {|n| "<div class='blog-presentation'>" + generate_presentation("#{$1}") + " </div>"}
 
-  #tags
-  md_content.sub!(/\[tags\](.+)/) {|n| "<div class='blog-tags'>" + tags_to_html("," + "#{$1}") + " </div>"}
-
-  return [cover_img, title, date, connections, abstract, md_content]
+  return [cover_img, title, date, connections, abstract, tags, md_content]
 end
 
 
@@ -101,13 +109,13 @@ def generate_presentation dir_path
 end
 
 #custom markdown element, converts string into multiple html elemnts
-def tags_to_html tags
+def tags_to_list tags
   #for connections md element
-  if tags == /,\s"none"/
-    return ""
-  end
+  tags.gsub!(/\s+/, "")
 
-  tag_list = tags.split(/,\s/)
-  tag_html = tag_list.reduce(" ") {|ls, tag| ls + "<p>#{tag}</p>"}
-  return tag_html
+  if tags == "none"
+    return []
+  else
+    return tags.split(",")
+  end
 end
