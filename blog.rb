@@ -2,6 +2,8 @@ require 'sinatra'
 require 'kramdown'
 require 'haml'
 
+set :port, 622
+
 get '/blog' do
 
   #return a list of markdown blogposts path
