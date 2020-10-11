@@ -14,7 +14,7 @@ I think I have already done the map when I was making the Pecha Kucha slideshow 
 
 [abstract] All the slides are from one picture that I have drawn. I regard that as a visual mapping of how I see myself as a curator, a composer, got lost in playing around with abstract structures, and returning to a humancentric curation that needs sensitive, that works with people.
 
-![img](/media/pechakucha_presentation/fullpicture.jpg)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_UAyyu-LUxk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ![img](/media/pechakucha_presentation/note1.jpg)
 

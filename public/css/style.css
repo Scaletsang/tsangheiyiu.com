@@ -255,6 +255,11 @@ a:hover{
               border-color: #A49598;
             }
 
+            #single-blog-content iframe {
+              margin-top: 25px;
+              width: 100%;
+            }
+
             .blog-detail-content img{
               width: 100%;
             }
