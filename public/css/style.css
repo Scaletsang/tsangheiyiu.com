@@ -14,11 +14,12 @@ a:hover{
 }
 
 .page-container{
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  overflow-x: hidden;
 }
 
 /*===============sidebar======================*/
@@ -78,6 +79,7 @@ a:hover{
 
 /*===============Blogs======================*/
 #blog-container{
+  width: 80vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
@@ -214,22 +216,43 @@ a:hover{
       z-index: 10;
     }
 
-    .single-blog-content{
-      padding: 20px;
-    }
-
-    .blog-detail-content{
-      width: 100%;
+    #single-blog-content > .blog-cover-img{
       display: none;
     }
 
-        .blog-presentation{
+    #single-blog-content {
+      padding: 20px 20px 20px 0px;
+    }
 
+        .blog-detail-content{
+          width: 100%;
+          display: none;
         }
 
-        .blog-detail-content img{
-          width: 200px;
-        }
+            #single-blog-content .blog-presentation{
+              height: 50%;
+              width: 100%;
+              display: flex;
+              flex-flow: row nowrap;
+              overflow-x: scroll;
+              overflow-y: hidden;
+            }
+
+            #single-blog-content .blog-presentation > img {
+              height: 98%;
+              width: auto;
+              border-style: solid;
+              border-width: 1px;
+              border-color: #A49598;
+            }
+
+            .blog-detail-content img{
+              width: 100%;
+            }
+
+            .blog-detail-content p{
+              margin-top: 25px;
+            }
 
 /*===============Search box======================*/
 

@@ -1,8 +1,10 @@
 window.onload = function() {
-  // setupEventListeners();
-  // triggerBlogContainerShrink();
+  setupEventListeners();
+  triggerBlogContainerShrink();
   makeMasonryLayout();
 }
+
+//============================blog class====================================
 
 function blog(id) {
   this.id = "#" + id;
@@ -23,32 +25,57 @@ function blog(id) {
   this.month = monthLs.indexOf(monthInAlphabet.toLowerCase()) + 1 ;
 }
 
-function sortBlogByDate() {
-  let blogpostsAttrLs = $(".blogpost")
+//===================put contents into masonry layout view==========================
+
+function makeMasonryLayout(tags=["none"], excludeId="none") {
+  let blogpostsAttrLs = sortAndFilterBLogs(tags, excludeId);
+  $(".blog-columns:visible .blogpost").detach().prependTo("#unorganized-blogposts");
+  putBlogInColumns(blogpostsAttrLs);
+
+}
+
+function sortAndFilterBLogs(selectorLs, excludeId) {
+  //filter only the blogpost with certain tags
+  let selectors = "";
+  if (selectorLs[0] != "none") {
+    selectors = selectorLs.reduce(function(tags, tag) {return tags + " ." + tag})};
+
+  //sort the filtered blogposts by date
+  let blogpostsAttrLs = $(".blogpost " + selectors)
     .map(function(index, elem) {
       let blogpost = new blog(elem.id);
-      console.log(blogpost.month);
+
+      if(elem.id == excludeId) {return "needToExclude";}
+
       return {
         id: blogpost.id,
         tags: blogpost.tags,
         date: parseInt(blogpost.year.toString() + blogpost.month.toString() + blogpost.day.toString())
     }})
-  return blogpostsAttrLs.sort(function(a, b){ return a.date-b.date});
+
+  //return a list of sorted objects, each represents a blogpost with only their id, tags and date values stored
+
+  let excludedIdBlogLs = Object.values(blogpostsAttrLs).filter(function(curr){return curr != "needToExclude"});
+  excludedIdBlogLs.splice(-2);
+
+  return excludedIdBlogLs.sort(function(a, b){ return a.date-b.date});
 }
 
-function putBlogInColumns(sortedFilteredBlogList) {
-  //something
-}
 
-function makeMasonryLayout(filter=["none"]) {
-  let sortedByDate = sortBlogByDate();
-  if (filter[0] == "none") {
-    putBlogInColumns(sortedByDate);
-  } else {
-    filtered = //something
-    putBlogInColumns(filtered);
+function putBlogInColumns(sortedFilteredBlogList, count=1, maxCount=$(".blog-columns:visible").length) {
+  console.log(sortedFilteredBlogList);
+  //base case
+  if (sortedFilteredBlogList.length != 0) {
+
+    $(sortedFilteredBlogList[0].id).detach().prependTo($("#column" + count))
+
+    if (count == maxCount) count = 1; else count++;
+    //recursion
+    putBlogInColumns(sortedFilteredBlogList.slice(1), count, maxCount);
   }
 }
+
+//==================masonry layout responsiveness===============================
 
 function triggerBlogContainerShrink() {
   let blogContainerWidth = parseInt($("#multiple-blog-container").css("width"));
@@ -74,18 +101,25 @@ function triggerBlogContainerShrink() {
   }
 }
 
-//event listeners
+//==================event listeners===============================
 
 function setupEventListeners() {
   //view posts
-  $(".blog-cover-img, .blog-title").click(function() {
+  $(".blogpost").click(function(elem) {
+
+    document.getElementById("single-blog-content").innerHTML = elem.currentTarget.innerHTML;
+
+    //adjust single and mutiple blog container attributes (e.g. width)
     $("#single-blog-container").show();
     $("#single-blog-container").css("width", "50%");
     $("#single-blog-container .blog-detail-content").show();
     $("#multiple-blog-container").css("width", "50%");
 
+    $("#single-blog-content .blog-tags").detach().prependTo("#single-blog-content");
+    $("#single-blog-content .blog-abstract-paragraph").hide();
+
     triggerBlogContainerShrink();
-    makeMasonryLayout();
+    makeMasonryLayout(["none"], elem.currentTarget.id);
   });
 
   //close button

@@ -76,8 +76,8 @@ def custom_md_parser md_content
   md_content.sub! /\[connections\](.+)/, ""
 
   #abstract
-  abstract = md_content.match(/\[abstract\](.+)/)[1]
-  md_content.sub! /\[abstract\](.+)/, ""
+  abstract = md_content.match(/\[abstract\]\s(.+)/)[1]
+  md_content.sub!(/\[abstract\](.+)/) {|n| "<p>#{$1}</p>"}
 
   #tags
   tags_string = md_content.match(/\[tags\](.+)/)[1]

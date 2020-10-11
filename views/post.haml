@@ -1,6 +1,6 @@
 %div.blogpost{:class => "#{blog_tags.reduce("") {|ls, tag| ls + " " + tag}}", :id => "#{blog_id}"}
-  %img.blog-cover-img{:src => "#{blog_cover_img}" }
-  %div.blog-contents
+  %img.blog-cover-img{:src => "#{blog_cover_img}"}
+  %div.blog-content
     %h1.blog-title
       = blog_title
     %p.blog-date
@@ -11,7 +11,7 @@
     %p.blog-abstract-paragraph
       = blog_abstract
 
-    %div.blog_tags
+    %div.blog-tags
       - blog_tags.each do |tag|
         %p
           = tag
