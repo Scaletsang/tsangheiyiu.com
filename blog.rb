@@ -2,7 +2,7 @@ require 'sinatra'
 require 'kramdown'
 require 'haml'
 
-set :port, 622
+set :port, 80
 
 get '/blog' do
 
