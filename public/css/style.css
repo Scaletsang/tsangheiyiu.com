@@ -156,15 +156,16 @@ a:hover{
           display: flex;
           flex-flow: row wrap;
           justify-content: flex-end;
-
+          width: -webkit-fill-available;
         }
 
             .blog-tags > p{
-              margin: 0px 5px 0px 5px;
-              padding: 5px 5px 17px 5px;
+              margin: 3px 5px 0px 5px;
+              padding: 5px 10px 17px 10px;
               height: 20px;
-              font-size: 10px;
+              font-size: 12px;
               color: black;
+              background-color: white;
               box-sizing: border-box;
               border-style: solid;
               border-width: 1px;
@@ -192,7 +193,6 @@ a:hover{
 #single-blog-container{
   width: 0%;
   height: 95%;
-  margin-top: 15px;
   display: none;
   border-style: solid;
   border-width: 1px;
@@ -202,26 +202,32 @@ a:hover{
   transition: height 1s;
 }
 
-    #close-button{
-      width: 70px;
-      position: relative;
-      top: 0%;
-      z-index: 10;
+    .blog-buttons{
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: row;
     }
 
-    #span-button{
-      width: 70px;
-      position: relative;
-      top: 0%;
-      z-index: 10;
-    }
+        #close-button{
+          width: 70px;
+        }
+
+        #span-button{
+          width: 70px;
+        }
+
+        #single-blog-content .blog-tags{
+          padding: 10px 10px 0px 0px;
+        }
 
     #single-blog-content > .blog-cover-img{
       display: none;
     }
 
-    #single-blog-content {
-      padding: 20px 20px 20px 0px;
+    #single-blog-content .blog-title{
+      font-size: 35px;
     }
 
         .blog-detail-content{
@@ -232,6 +238,9 @@ a:hover{
             #single-blog-content .blog-presentation{
               height: 50%;
               width: 100%;
+              border-style: solid;
+              border-width: 1px;
+              border-color: ##29C16C;
               display: flex;
               flex-flow: row nowrap;
               overflow-x: scroll;
@@ -239,10 +248,10 @@ a:hover{
             }
 
             #single-blog-content .blog-presentation > img {
-              height: 98%;
+              height: 100%;
               width: auto;
+              border-width: 0px 1px 0px 1px;
               border-style: solid;
-              border-width: 1px;
               border-color: #A49598;
             }
 

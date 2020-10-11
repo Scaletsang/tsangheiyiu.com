@@ -106,16 +106,21 @@ function triggerBlogContainerShrink() {
 function setupEventListeners() {
   //view posts
   $(".blogpost").click(function(elem) {
-
+    console.log(window.innerWidth);
     document.getElementById("single-blog-content").innerHTML = elem.currentTarget.innerHTML;
 
     //adjust single and mutiple blog container attributes (e.g. width)
     $("#single-blog-container").show();
     $("#single-blog-container").css("width", "50%");
     $("#single-blog-container .blog-detail-content").show();
+    $("#single-blog-container .blog-content").css("padding", "0px 20px 20px 20px")
     $("#multiple-blog-container").css("width", "50%");
 
-    $("#single-blog-content .blog-tags").detach().prependTo("#single-blog-content");
+    //move the blog-tags div up to the top
+    $("#single-blog-container .blog-buttons .blog-tags").remove();
+    $("#single-blog-content .blog-tags").detach().appendTo("#single-blog-container .blog-buttons");
+
+    //hide the abstract paragraph at the top
     $("#single-blog-content .blog-abstract-paragraph").hide();
 
     triggerBlogContainerShrink();
@@ -135,18 +140,7 @@ function setupEventListeners() {
   $("#span-button").click(function(){
     $("#multiple-blog-container").css("display", "none");
     $("#single-blog-container").css("width", "100%");
+    $("#single-blog-container .blog-content").css({"padding": "0px 10% 0px 10%", "margin-bottom": "40px"});
   });
 
-  //trigger when scolling
-  $("#content-container").scroll(function(e){
-
-    //search bar motion-up
-    let searchBoxTop = 20;
-    let scrollY = e.target.scrollTop;
-
-    if (scrollY <= 45) searchBoxTop = 45;
-    else if (scrollY > 45 && scrollY <= 65) searchBoxTop =  150 - scrollY;
-
-    $("#search-box").css("top", searchBoxTop);
-  });
 }
