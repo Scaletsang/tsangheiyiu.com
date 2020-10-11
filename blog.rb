@@ -2,8 +2,9 @@ require 'sinatra'
 require 'kramdown'
 require 'haml'
 
-set :bind, '127.0.0.1'
-set :port, 622
+get '/' do
+  redirect "/blog"
+end
 
 get '/blog' do
 
