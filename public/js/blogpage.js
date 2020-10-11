@@ -34,14 +34,8 @@ function makeMasonryLayout(tags=["none"], excludeId="none") {
 
 }
 
-function sortAndFilterBLogs(selectorLs, excludeId) {
-  //filter only the blogpost with certain tags
-  let selectors = "";
-  if (selectorLs[0] != "none") {
-    selectors = selectorLs.reduce(function(tags, tag) {return tags + " ." + tag})};
-
-  //sort the filtered blogposts by date
-  let blogpostsAttrLs = $(".blogpost " + selectors)
+function generateFilteredObj(jquerySelectors, excludeId) {
+  return $(jquerySelectors)
     .map(function(index, elem) {
       let blogpost = new blog(elem.id);
 
@@ -52,18 +46,37 @@ function sortAndFilterBLogs(selectorLs, excludeId) {
         tags: blogpost.tags,
         date: parseInt(blogpost.year.toString() + blogpost.month.toString() + blogpost.day.toString())
     }})
+}
 
-  //return a list of sorted objects, each represents a blogpost with only their id, tags and date values stored
+function sortAndFilterBLogs(selectorLs, excludeId) {
+  //filter only the blogpost with certain tags
+  let selectors = "";
+  if (selectorLs[0] == "none") {
+    selectors = ".blogpost"
+  } else {
+    let jquerySelectorsLs = selectorLs.map(function(item) {
+      return "." + item;
+    });
+    selectors = jquerySelectorsLs.join();
+  }
 
-  let excludedIdBlogLs = Object.values(blogpostsAttrLs).filter(function(curr){return curr != "needToExclude"});
+  //return a list of filtered objects,
+  //each represents a blogpost with only their id, tags and date values stored
+  let blogpostsAttrLs = generateFilteredObj(selectors, excludeId);
+
+  //filter specific blog with its id
+  let excludedIdBlogLs = Object.values(blogpostsAttrLs)
+    .filter(function(curr){return curr != "needToExclude"});
+
   excludedIdBlogLs.splice(-2);
 
+  //sort the filtered blogposts by date
   return excludedIdBlogLs.sort(function(a, b){ return a.date-b.date});
 }
 
 
 function putBlogInColumns(sortedFilteredBlogList, count=1, maxCount=$(".blog-columns:visible").length) {
-  console.log(sortedFilteredBlogList);
+
   //base case
   if (sortedFilteredBlogList.length != 0) {
 
@@ -106,7 +119,6 @@ function triggerBlogContainerShrink() {
 function setupEventListeners() {
   //view posts
   $(".blogpost").click(function(elem) {
-    console.log(window.innerWidth);
     document.getElementById("single-blog-content").innerHTML = elem.currentTarget.innerHTML;
 
     //adjust single and mutiple blog container attributes (e.g. width)
@@ -143,4 +155,12 @@ function setupEventListeners() {
     $("#single-blog-container .blog-content").css({"padding": "0px 10% 0px 10%", "margin-bottom": "40px"});
   });
 
+  //search box
+  $("#search-box input").change(function(elem){
+    let input = $("#search-box input").val();
+    let inputLs = input.split(", ");
+
+    triggerBlogContainerShrink();
+    makeMasonryLayout(inputLs, "none");
+  })
 }
