@@ -2,7 +2,8 @@ require 'sinatra'
 require 'kramdown'
 require 'haml'
 
-set :port, 627
+set :bind, 'localhost'
+set :port, 6270
 
 get '/' do
   redirect "/blog"
