@@ -8,7 +8,7 @@
 
 Today I seriously watch it, again, again and again. Each of those references and people he talked about is so interesting that I have to listen to the clip few times to grasp the connections between those people and ideas. /13 Oct 2020 morning.
 
-<iframe src="https://www.youtube.com/embed/gyIVCqf23cA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe height="315" src="https://www.youtube.com/embed/gyIVCqf23cA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Édouard Glissant's idea of Archipelago
 
