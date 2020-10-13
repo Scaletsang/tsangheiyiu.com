@@ -235,7 +235,7 @@ a:hover{
           display: none;
         }
 
-            #single-blog-content .blog-presentation{
+            .blog-detail-content .blog-presentation{
               height: 50%;
               width: 100%;
               margin-top: 25px;
@@ -248,7 +248,7 @@ a:hover{
               overflow-y: hidden;
             }
 
-            #single-blog-content .blog-presentation > img {
+            .blog-detail-content .blog-presentation > img {
               height: 100%;
               width: auto;
               border-width: 0px 1px 0px 1px;
@@ -256,26 +256,17 @@ a:hover{
               border-color: #A49598;
             }
 
-            #single-blog-content iframe {
+            .blog-detail-content .blog-presentation,img,p,h1,h2,h3,h4,h5,h6,ul,iframe{
               margin-top: 25px;
+            }
+
+            .blog-detail-content iframe {
+              height: 20%;
               width: 100%;
             }
 
             .blog-detail-content img{
               width: 100%;
-              height: 20%;
-            }
-
-            .blog-detail-content p{
-              margin-top: 25px;
-            }
-
-            .blog-detail-content h1,h2,h3,h4,h5,h6{
-              margin-top: 25px;
-            }
-
-            .blog-detail-content ul{
-              margin-top: 25px;
             }
 
 /*===============Search box======================*/
