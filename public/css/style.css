@@ -133,6 +133,7 @@ a:hover{
     }
 
     .blog-content > h1{
+      margin-top: 0px;
       font-size: 20px;
     }
 
